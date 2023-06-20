@@ -15,4 +15,10 @@ player
 .setCurrentTime(localStorage.getItem(LOCALSTORAGE_KEY))
 .catch(function (error) {
     console.error(error);
-})
+});
+
+player.off('ended', offPlay);
+
+function offPlay() {
+    localStorage.removeItem(LOCALSTORAGE_KEY)
+};
