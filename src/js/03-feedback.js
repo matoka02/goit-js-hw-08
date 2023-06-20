@@ -10,9 +10,13 @@ const refs = {
     textarea: document.querySelector('textarea[name="message"]'),
 };
 
-refs.form.addEventListener('submit', onFormSubmit);
-refs.email.addEventListener('input', throttle(onInput, 800));
-refs.textarea.addEventListener('input', throttle(onInput, 800));
+refs.form.addEventListener('input', throttle(onInput, 800));
+refs.form.addEventListener('submit', throttle(onFormSubmit, 800));
+
+// // отклонено
+// refs.form.addEventListener('submit', onFormSubmit);
+// refs.email.addEventListener('input', throttle(onInput, 800));
+// refs.textarea.addEventListener('input', throttle(onInput, 800));
 
 savedText();
 
@@ -26,7 +30,17 @@ function onFormSubmit(evt) {
     console.log({ email: refs.email.value, message: refs.textarea.value });
     evt.currentTarget.reset();
     localStorage.removeItem(LOCALSTORAGE_KEY);
-}
+};
+
+
+const load = key => {
+    try {
+        const serializedState = localStorage.getItem(key);
+        return serializedState === null ? undefined : JSON.parse(serializedState);
+    } catch (error) {
+        console.error('Get state error: ', error.message);
+    }
+};
 
 function savedText() {
     const savedMessage = localStorage.getItem(LOCALSTORAGE_KEY);
