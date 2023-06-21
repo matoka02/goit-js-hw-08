@@ -9,13 +9,17 @@ player.on('timeupdate', throttle(onPlay, 1000));
 
 function onPlay(evt) {
     localStorage.setItem(LOCALSTORAGE_KEY, evt.seconds);
+    console.log(onPlay(evt));
 };
 
+
 player
-.setCurrentTime(localStorage.getItem(LOCALSTORAGE_KEY))
+.setCurrentTime(localStorage.getItem(LOCALSTORAGE_KEY) || [])
 .catch(function (error) {
     console.error(error);
 });
+
+console.log(JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)));
 
 player.off('ended', offPlay);
 
