@@ -9,7 +9,6 @@ player.on('timeupdate', throttle(onPlay, 1000));
 
 function onPlay(evt) {
     localStorage.setItem(LOCALSTORAGE_KEY, evt.seconds);
-    console.log(onPlay(evt));
 };
 
 
