@@ -11,7 +11,7 @@ const refs = {
 };
 
 refs.form.addEventListener('input', throttle(onInput, 800));
-refs.form.addEventListener('submit', throttle(onFormSubmit, 800));
+refs.form.addEventListener('submit', onFormSubmit);
 
 // // отклонено
 // refs.form.addEventListener('submit', onFormSubmit);
