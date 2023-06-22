@@ -11,12 +11,24 @@ function onPlay(evt) {
     localStorage.setItem(LOCALSTORAGE_KEY, evt.seconds);
 };
 
+// // отклонено
+// player
+// .setCurrentTime(localStorage.getItem(LOCALSTORAGE_KEY) || [])
+// .catch(function (error) {
+//     console.error(error);
+// });
 
-player
-.setCurrentTime(localStorage.getItem(LOCALSTORAGE_KEY) || [])
-.catch(function (error) {
-    console.error(error);
+player.setCurrentTime(localStorage.getItem(LOCALSTORAGE_KEY)).then(function(seconds) {
+}).catch(function(error) {
+    switch (error.name) {
+        case 'RangeError':
+            break;
+
+        default:
+            break;
+    }
 });
+
 
 console.log(JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)));
 
