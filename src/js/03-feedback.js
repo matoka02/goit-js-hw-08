@@ -26,6 +26,13 @@ function onInput() {
 }
 
 function onFormSubmit(evt) {
+    inputEmail = refs.email.value;
+    inputMessage = refs.textarea.value;
+    if ((inputEmail.trim() === '') || (inputMessage.trim() === '')) {
+        alert('Please, fill all fields!');
+        return;
+    };
+        
     evt.preventDefault();
     console.log({ email: refs.email.value, message: refs.textarea.value });
     evt.currentTarget.reset();
